@@ -5,7 +5,7 @@ export const fetchCartItem = createAsyncThunk(
   "product/fetchCartItem",
   async () => {
     try {
-      const response = await fetch(" http://localhost:5001/cart");
+      const response = await fetch(" https://jsonapi-fay8.onrender.com/cart");
 
       return response.json();
     } catch (error) {
@@ -18,7 +18,7 @@ export const removeCart = createAsyncThunk(
   "product/removeCart",
   async (productid) => {
     try {
-      const response = await fetch(`http://localhost:5001/cart/${productid}`, {
+      const response = await fetch(`https://jsonapi-fay8.onrender.com/cart/${productid}`, {
         method: "DELETE",
       });
       return productid;
@@ -32,7 +32,7 @@ export const pushCart = createAsyncThunk(
   "product/pushCart",
   async (cartData) => {
     try {
-      const response = await fetch(" http://localhost:5001/cart", {
+      const response = await fetch(" https://jsonapi-fay8.onrender.com/cart", {
         method: "POST",
         body: JSON.stringify(cartData),
         headers: {
@@ -51,7 +51,7 @@ export const pushCart = createAsyncThunk(
 export const increment = createAsyncThunk("product/increment", async (cart) => {
   try {
     console.log("cartSlice", cart.count);
-    const response = await fetch(`http://localhost:5001/cart/${cart.id}`, {
+    const response = await fetch(`https://jsonapi-fay8.onrender.com/cart/${cart.id}`, {
       method: "PATCH",
       body: JSON.stringify({ qty: cart.count }),
       headers: {
@@ -68,7 +68,7 @@ export const increment = createAsyncThunk("product/increment", async (cart) => {
 // increment
 export const decrement = createAsyncThunk("product/decrement", async (cart) => {
   try {
-    const response = await fetch(`http://localhost:5001/cart/${cart.id}`, {
+    const response = await fetch(`https://jsonapi-fay8.onrender.com/cart/${cart.id}`, {
       method: "PATCH",
       body: JSON.stringify({ qty: cart.count }),
       headers: {

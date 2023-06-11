@@ -3,9 +3,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // product get
 export const fetchData = createAsyncThunk("product/fetchData", async () => {
   try {
-    const response = await fetch(" http://localhost:5001/product");
-
-    return response.json();
+    const response = await fetch(" https://jsonapi-fay8.onrender.com/product");
+    let data= await response.json();
+    // console.log("jsonn",data);
+    return data;
   } catch (error) {
     throw new Error(error);
   }
@@ -16,7 +17,7 @@ export const deleteData = createAsyncThunk(
   async (productid) => {
     try {
       const response = await fetch(
-        `http://localhost:5001/product/${productid}`,
+        `https://jsonapi-fay8.onrender.com/product/${productid}`,
         {
           method: "DELETE",
         }
@@ -32,9 +33,9 @@ export const createProduct = createAsyncThunk(
   "product/createProduct",
   async (productData) => {
     try {
-      const response = await fetch(" http://localhost:5001/product", {
+      const response = await fetch(" https://jsonapi-fay8.onrender.com/product", {
         method: "POST",
-        body: JSON.stringify({ ...productData, editable: false }),
+        body: JSON.stringify({ ...productData, editable: true }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
@@ -53,7 +54,7 @@ export const productUpdate = createAsyncThunk(
   async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:5001/product/${productId}`,
+        `https://jsonapi-fay8.onrender.com/product/${productId}`,
         {
           method: "PATCH",
           body: JSON.stringify({ editable: false }),
@@ -76,7 +77,7 @@ export const editModeCancel = createAsyncThunk(
   async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:5001/product/${productId}`,
+        `https://jsonapi-fay8.onrender.com/product/${productId}`,
         {
           method: "PATCH",
           body: JSON.stringify({ editable: true }),
@@ -98,7 +99,7 @@ export const updateCall = createAsyncThunk(
   "product/updateCall",
   async (user) => {
     try {
-      const response = await fetch(`http://localhost:5001/product/${user.id}`, {
+      const response = await fetch(`https://jsonapi-fay8.onrender.com/product/${user.id}`, {
         method: "PATCH",
         body: JSON.stringify(user),
         headers: {

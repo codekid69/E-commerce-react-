@@ -13,6 +13,7 @@ function AddProducts() {
     rating: "",
     content: "",
     image: "",
+    // editable: false,
   });
   const handleSubmit = (e) => {
     e.preventDefault();

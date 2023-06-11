@@ -65,9 +65,10 @@ dispatch(pushCart(obj));
 
   return (
     <>
+       
 
-
-      { filterData.map((x) => {
+     { filterData.length>0?
+      filterData.map((x) => {
         return (
           <section className={x.editable ? "listItem" : "listItemFalse"} key={x.id}>
             <div className="left">
@@ -213,9 +214,12 @@ dispatch(pushCart(obj));
             </div>
           </section>
         );
-      })}
+      })
+      :'No Item to display'
+    }
     </>
-  );
+    );
+    
 }
 
 export default ItemList;
